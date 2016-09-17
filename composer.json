@@ -1,0 +1,32 @@
+{
+  "name": "connectum/insight",
+  "description": "The Connectum Insight - Analytics.",
+  "keywords": ["framework", "platform", "connectum", "saas", "laravel", "redis", "analytics", "statistics"],
+  "license": "MIT",
+  "homepage": "https://insight.connection.io",
+  "authors": [
+    {
+      "name": "Mirza Pasic",
+      "email": "mirza@bosnadev.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.4",
+    "predis/predis": "^1.1"
+  },
+  "autoload": {
+    "classmap": [
+      "database"
+    ],
+    "psr-4": {
+      "Connectum\\Insight\\": "src/",
+      "Connectum\\Tests\\Insight\\": "tests/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.x-dev"
+    }
+  },
+  "minimum-stability": "dev"
+}
