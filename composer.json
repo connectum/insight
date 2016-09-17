@@ -1,9 +1,9 @@
 {
   "name": "connectum/insight",
-  "description": "The Connectum Insight - Analytics.",
+  "description": "Connectum Insight - Powerful analytics using Redis",
   "keywords": ["framework", "platform", "connectum", "saas", "laravel", "redis", "analytics", "statistics"],
   "license": "MIT",
-  "homepage": "https://insight.connection.io",
+  "homepage": "https://insight.connectum.io",
   "authors": [
     {
       "name": "Mirza Pasic",
@@ -15,9 +15,6 @@
     "predis/predis": "^1.1"
   },
   "autoload": {
-    "classmap": [
-      "database"
-    ],
     "psr-4": {
       "Connectum\\Insight\\": "src/",
       "Connectum\\Tests\\Insight\\": "tests/"
