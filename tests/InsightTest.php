@@ -2,23 +2,20 @@
 
 namespace Connectum\Tests\Insight;
 
-use Illuminate\Support\Facades\Redis;
 use Predis\Client;
 use Connectum\Insight\Insight;
+use Illuminate\Support\Facades\Redis;
 
 class InsightTest extends TestCase
 {
-    protected $insight;
-
     public function setUp()
     {
         parent::setUp();
-        $this->insight = new Insight();
     }
 
     public function testClientIsAnInstanceOfPredisClient()
     {
-        $this->assertInstanceOf(Client::class, $this->insight->getClient());
+        $this->assertInstanceOf(Client::class, Insight::redis());
     }
 
     public function testIfWeCanTrackAnEvent()
@@ -34,7 +31,7 @@ class InsightTest extends TestCase
 
     public function testEventCount()
     {
-        $this->insight->track('test', 1);
+        Insight::track('test', 1);
 
         $this->assertEquals(1, Insight::count('test'));
 

@@ -2,39 +2,50 @@
 
 namespace Connectum\Insight;
 
-use Predis\Client as Redis;
-
 class Insight
 {
-    private static $redisClient = \Predis\Client::class;
+    private static $redisClientClass = \Predis\Client::class;
 
     /**
-     * @var Redis
+     * @var Predis client instance
      */
     private static $redis;
 
     public function __construct()
     {
-        static::$redis = static::createRedisClient();
     }
 
     public static function count($key)
     {
-        return static::$redis->scard($key);
+        return static::redis()->scard($key);
     }
 
     public static function track($key, $value)
     {
-        return static::$redis->sadd($key, $value);
+        return static::redis()->sadd($key, $value);
     }
 
-    public static function createRedisClient()
+    /**
+     * Return an instance of a Predis Client
+     *
+     * @return mixed | \Predis\Client
+     */
+    public static function getRedisClient()
     {
-        return new static::$redisClient;
-    }
+        if(static::$redis === null) {
+            static::$redis = new static::$redisClientClass;
+        }
 
-    public static function getClient()
-    {
         return static::$redis;
+    }
+
+    /**
+     * Just an alias of the getRedisClient()
+     *
+     * @return mixed
+     */
+    public static function redis()
+    {
+        return static::getRedisClient();
     }
 }
